@@ -50,7 +50,6 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
  highlight BadWhitespace ctermbg=red guibg=darkred
 
 let g:ycm_autoclose_preview_window_after_completion=1
-map g  :YcmCompleter GoToDefinitionElseDeclaration
 
 let python_highlight_all=1
 syntax on
