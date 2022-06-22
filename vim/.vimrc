@@ -25,6 +25,8 @@ Plugin 'frazrepo/vim-rainbow'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'itchyny/lightline.vim'
+Plugin 'pacokwon/onedarkhc.vim'
+Plugin 'morhetz/gruvbox'
 " ...
 
 " All of your Plugins must be added before the following line
@@ -53,12 +55,79 @@ map g  :YcmCompleter GoToDefinitionElseDeclaration
 let python_highlight_all=1
 syntax on
 
+let NERDTreeMinimalUI=1
+autocmd BufEnter * if tabpagenr('$') == 1
+      \ && winnr('$') == 1
+      \ && exists('b:NERDTree')
+      \ && b:NERDTree.isTabTree()
+      \ | quit | endif
 
+" vim-nerdtree-syntax-highlight
+let g:NERDTreeHighlightFolders = 1
+let g:NERDTreeHighlightFoldersFullName = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['rb', 'ruby']
+
+" vim-devicons
+let g:DevIconsEnableFoldersOpenClose = 1
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 set number
 set showmatch
 set history=1000
 set undolevels=1000
 set wildignore=*.swp,*.bak,*.pyc
+set expandtab 
+set nu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set incsearch
+set autoindent
+set laststatus=2
+set encoding=UTF-8
+set t_Co=256
+set noshowmode
+set hid
+set background=dark
+set ruler
+hi Normal guibg=NONE ctermbg=NONE
+filetype plugin on
+filetype indent on
+colorscheme gruvbox
+
+
+if exists('+termguicolors')
+  " Necessary when using tmux
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+
+" Tabs
+set sw=2 ts=2 sts=2 " Default
+autocmd FileType html :setlocal sw=2 ts=2 sts=2
+autocmd FileType ruby :setlocal sw=2 ts=2 sts=2
+autocmd FileType javascript :setlocal sw=2 ts=2 sts=2
+autocmd FileType xml :setlocal sw=2 ts=2 sts=2
+autocmd FileType python :setlocal sw=4 ts=4 sts=4
+autocmd FileType go :setlocal sw=4 ts=4 sts=4
+
+" Make vertical separator pretty
+highlight VertSplit cterm=NONE
+set fillchars+=vert:\▏
+
+function D()
+  execute "NERDTree"
+endfunction
+command! D call D()
+
+function Term()
+  execute "below term++rows=15"
+endfunction
+command! Term call Term()
 
 
