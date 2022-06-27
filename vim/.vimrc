@@ -27,6 +27,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'itchyny/lightline.vim'
 Plugin 'pacokwon/onedarkhc.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'iamcco/markdown-preview.nvim'
 " ...
 
 " All of your Plugins must be added before the following line
