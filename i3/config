@@ -183,6 +183,7 @@ bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
 bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
 exec_always --no-startup-id setxkbmap -layout us,ir -option 'grp:alt_shift_toggle'
 exec --no-startup-id xsetroot -solid "#242424"
+exec_always --no-startup-id klipper
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
