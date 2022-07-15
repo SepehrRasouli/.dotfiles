@@ -27,13 +27,18 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'itchyny/lightline.vim'
 Plugin 'pacokwon/onedarkhc.vim'
 Plugin 'morhetz/gruvbox'
-Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'alvan/vim-closetag'
+Plugin 'preservim/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'dense-analysis/ale'
+Plugin 'mg979/vim-visual-multi', {'branch': 'master'}
+Plugin 'easymotion/vim-easymotion'
 " ...
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
+map <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(systemlist("cd " . shellescape(fnamemodify(resolve(expand('%:p')), ":h")) . " && git log --no-merges -n 1 -L " . shellescape(line("v") . "," . line(".") . ":" . resolve(expand("%:p")))), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
 set encoding=utf-8
 " Enable folding
 set foldmethod=indent
@@ -50,8 +55,6 @@ au BufNewFile,BufRead *.py
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
  highlight BadWhitespace ctermbg=red guibg=darkred
 
-let g:ycm_autoclose_preview_window_after_completion=1
-
 let python_highlight_all=1
 syntax on
 
@@ -67,8 +70,19 @@ let g:NERDTreeHighlightFolders = 1
 let g:NERDTreeHighlightFoldersFullName = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['rb', 'ruby']
 
-" vim-devicons
 let g:DevIconsEnableFoldersOpenClose = 1
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+     \ 'active': {
+      \   'left': [ ['mode','paste'],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'relativepath'] ],
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 set number
 set showmatch
@@ -102,10 +116,6 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ }
 
 " Tabs
 set sw=2 ts=2 sts=2 " Default
